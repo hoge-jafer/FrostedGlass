@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="FrostedGlass.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FrostedGlass"
+    xmlns:controls="using:CompositionProToolkit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Key="CustomFlyoutPresenterStyle" TargetType="FlyoutPresenter">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundChromeHighBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource FlyoutBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="{ThemeResource FlyoutBorderThemePadding}"/>
+            <Setter Property="MinWidth" Value="800"/>
+            <Setter Property="MaxWidth" Value="800"/>
+            <Setter Property="MinHeight" Value="650"/>
+            <Setter Property="MaxHeight" Value="650"/>
+            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Auto"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto"/>
+            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="FlyoutPresenter">
+                        <Grid Background="Transparent">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTransitions="{TemplateBinding ContentTransitions}">
+                            </ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Flyout x:Key="CustomFlyout" FlyoutPresenterStyle="{StaticResource CustomFlyoutPresenterStyle}">
+            <Grid Margin="30 5">
+                <controls:FrostedGlass
+                    CornerRadius="8"
+                    MultiplyAmount="1"
+                    TintColor="#b7b7b7"
+                    TintOpacity="0.3"/>
+                <Border Width="500"
+                        Height="60"
+                        Background="#373737"
+                        CornerRadius="5">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="White">
+                        你好！
+                    </TextBlock>
+                </Border>
+            </Grid>
+        </Flyout>
+    </Page.Resources>
+    <Grid Background="#373737">
+        <controls:ImageFrame 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            FrameBackground="#373737"
+            Source="ms-appx:///Assets/wallhaven-382471.png"
+            Stretch="Uniform"/>
+        <Button x:Name="Hello"
+                Width="150"
+                Height="40"
+                HorizontalAlignment="Center"
+                Margin="100"
+                VerticalAlignment="Top"
+                Content="Show"
+                FlyoutBase.AttachedFlyout="{StaticResource CustomFlyout}"
+                Click="Hello_Click"/>
+    </Grid>
+</Page>
